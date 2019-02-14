@@ -1,0 +1,35 @@
+body {
+	margin: 0;
+	background-color: #f3f3f3;
+}
+#sourceImg {
+	width: 0;
+	height: 0;
+}
+#app {
+	margin: 20px 0;
+	opacity: 0;
+	transition: opacity 270ms;
+}
+#app.show {
+	opacity: 1;
+}
+#canvasWrap {
+	position: relative;
+	background-color: #fff;
+	margin: 0 auto;
+}
+#canvasWrap[data-cursor="default"]{
+	cursor: default;
+}
+#imgCanvas, #labelCanvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+#imgCanvas {
+
+}
+#labelCanvas {
+
+}
