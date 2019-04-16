@@ -81,31 +81,31 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index/index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/samples/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/index/index.js":
-/*!****************************!*\
-  !*** ./src/index/index.js ***!
-  \****************************/
+/***/ "./src/samples/index.js":
+/*!******************************!*\
+  !*** ./src/samples/index.js ***!
+  \******************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.scss */ \"./src/index/index.scss\");\n/* harmony import */ var _index_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_index_scss__WEBPACK_IMPORTED_MODULE_0__);\n\n\n//# sourceURL=webpack:///./src/index/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.scss */ \"./src/samples/index.scss\");\n/* harmony import */ var _index_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_index_scss__WEBPACK_IMPORTED_MODULE_0__);\n\n\n//# sourceURL=webpack:///./src/samples/index.js?");
 
 /***/ }),
 
-/***/ "./src/index/index.scss":
-/*!******************************!*\
-  !*** ./src/index/index.scss ***!
-  \******************************/
+/***/ "./src/samples/index.scss":
+/*!********************************!*\
+  !*** ./src/samples/index.scss ***!
+  \********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/index/index.scss?");
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/samples/index.scss?");
 
 /***/ })
 
