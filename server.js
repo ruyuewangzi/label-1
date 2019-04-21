@@ -2,13 +2,11 @@ const express = require('express'),
 			http = require('http'),
 			path = require('path')
 
-const api = require('./api'),
-			config = require('./config')
+const api = require('./api')
 
-console.log(config)
 
 const app = express()
-const server = http.createServer(app).listen(config.PORT || 80)
+const server = http.createServer(app).listen(80)
 
 
 app.set('views', path.resolve(__dirname, 'templates'))
