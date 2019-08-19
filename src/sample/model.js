@@ -1,5 +1,4 @@
-const model = {
-  sourceFiles: null,
+export default {
   activeShape: null,
 
   labelInfo: {
@@ -10,11 +9,7 @@ const model = {
     imageWidth: null,
     imageHeight: null,
   },
-
   currentLabel: null,
-
   isDrawing: false,
   isMouseDown: false,
-}
-
-export default model
+};

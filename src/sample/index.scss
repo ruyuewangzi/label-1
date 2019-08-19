@@ -10,6 +10,7 @@ html, body {
 }
 
 body {
+  font-size: 14px;
   background-color: #333;
 }
 
@@ -18,13 +19,22 @@ body {
   height: 0;
 }
 
-main {
+#canvasMain {
   position: fixed;
   top: 0;
-  right: 240px;
+  right: 270px;
   bottom: 0;
-  left: 220px;
+  left: 0;
   overflow: auto;
+}
+
+#labelPanel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 270px;
+  left: auto;
 }
 
 #maskImg {
@@ -40,7 +50,6 @@ main {
 
 #canvasWrap {
   position: relative;
-  background-color: #fff;
   margin: 0 auto;
   opacity: 0;
   transition: opacity 270ms;
@@ -61,57 +70,6 @@ main {
   left: 0;
 }
 
-#fileWrap {
-  position: fixed;
-  top: 0;
-  right: auto;
-  bottom: 0;
-  left: 0;
-  overflow: auto;
-  padding: 5px 10px 5px 5px;
-  width: 220px;
-
-  .file-name {
-    position: relative;
-    stroke: #FFEB3B;
-    font-size: 12px;
-    line-height: 1;
-    padding: 10px 8px;
-    white-space: nowrap;
-    float: left;
-    width: 20%;
-    text-overflow: ellipsis;
-    text-align: center;
-    transform: scale(.9);
-
-    &.active, &.has, &:hover {
-      cursor: pointer;
-      stroke: #fff;
-      background-color: hsla(173, 100%, 32%, 1);
-      border-radius: 30px;
-    }
-
-    &:hover {
-      background-color: hsla(173, 100%, 32%, .6);
-    }
-
-    &.active {
-      background-color: hsla(173, 100%, 32%, 1);
-    }
-
-  }
-
-}
-
-#labelPanel {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 240px;
-  left: auto;
-}
-
 #labelImagesWrap {
   overflow: auto;
   height: 100%;
@@ -125,21 +83,26 @@ main {
     padding: 3px 16px 3px 3px;
     color: #ffea00;
     stroke: #ffea00;
+    border: 2px solid transparent;
+    border-left: none;
+    border-right: none;
+    border-top: none;
 
     &.active {
       color: #fff;
       stroke: #fff;
-      background-color: hsla(173, 100%, 32%, 1);
+      background-color: rgba(243, 60, 60, 0.5);
+      border-color: #f33c3c;
 
       &:hover {
-        background-color: hsla(173, 100%, 32%, 1);
+        background-color: rgba(243, 60, 60, 0.8);
       }
 
     }
 
     &:hover {
       cursor: default;
-      background-color: hsla(173, 100%, 32%, .3);
+      background-color: rgba(243, 60, 60, 0.5);
       color: #fff;
       stroke: #fff;
     }
@@ -150,13 +113,13 @@ main {
 
 .labelImage {
   .label-img-wrap {
-    max-width: 60px;
-    min-width: 60px;
-    height: 30px;
+    max-width: 90px;
+    min-width: 90px;
+    height: 90px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 5px;
+    margin-right: 10px;
 
     img {
       max-width: 100%;
@@ -166,7 +129,6 @@ main {
   }
 
   .label-name {
-    font-size: 12px;
     flex: 1 1 auto;
     white-space: nowrap;
     overflow: hidden;
