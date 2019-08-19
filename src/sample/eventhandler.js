@@ -1,18 +1,18 @@
-import view from './view'
-import model from './model'
-import controller from './controller'
+import view from "./view"
+import model from "./model"
+import controller from "./controller"
 
 const eventHandler = {
   registEventHandler: function(){
-    view.canvasWrapEl.addEventListener('mousedown', eventHandler.canvasWrapEl__onMouseDown)
-    view.canvasWrapEl.addEventListener('mousemove', eventHandler.canvasWrapEl__onMouseMove)
-    view.canvasWrapEl.addEventListener('mouseup', eventHandler.canvasWrapEl__onMouseUp)
-    view.canvasWrapEl.addEventListener('contextmenu', eventHandler.canvasWrapEl__onContextMenu)
+    view.canvasWrapEl.addEventListener("mousedown", eventHandler.canvasWrapEl__onMouseDown)
+    view.canvasWrapEl.addEventListener("mousemove", eventHandler.canvasWrapEl__onMouseMove)
+    view.canvasWrapEl.addEventListener("mouseup", eventHandler.canvasWrapEl__onMouseUp)
+    view.canvasWrapEl.addEventListener("contextmenu", eventHandler.canvasWrapEl__onContextMenu)
 
-    view.fileWrapEl.addEventListener('click', eventHandler.fileWrapEl_onClick)
-    view.labelImagesWrapEl.addEventListener('click', eventHandler.labelImagesWrapEl__onClick)
+    view.fileWrapEl.addEventListener("click", eventHandler.fileWrapEl_onClick)
+    view.labelImagesWrapEl.addEventListener("click", eventHandler.labelImagesWrapEl__onClick)
 
-    window.addEventListener('keydown', eventHandler.window__onKeyDown)
+    window.addEventListener("keydown", eventHandler.window__onKeyDown)
   },
 
 
@@ -84,10 +84,10 @@ const eventHandler = {
             if(!filename) return
 
             model.labelInfo.imagePath = filename
-            model.labelInfo.baseName = model.labelInfo.imagePath.split('.')[0]
+            model.labelInfo.baseName = model.labelInfo.imagePath.split(".")[0]
 
-            view.fileWrapEl.querySelector('.file-name.active').classList.remove('active')
-            target.classList.add('active')
+            view.fileWrapEl.querySelector(".file-name.active").classList.remove("active")
+            target.classList.add("active")
 
             controller.initView()
           },
@@ -128,7 +128,7 @@ const eventHandler = {
 
             var labelTimestamp = target.dataset.labelTimestamp
 
-            target.classList.add('active')
+            target.classList.add("active")
 
             model.labelInfo.shapes.forEach(function(label, index){
               if(label.timestamp == labelTimestamp){
@@ -139,12 +139,12 @@ const eventHandler = {
             })
           },
           showInput: function(e, target){
-            var input = window.prompt('输入标注内容：', target.innerText)
+            var input = window.prompt("输入标注内容：", target.innerText)
             if(!input) return
 
-            input = input.replace(/^\s+|\s$/g,'')
+            input = input.replace(/^\s+|\s$/g,"")
 
-            input = input.replace(/</g, '&lt;')
+            input = input.replace(/</g, "&lt;")
 
             var labelImageEl = target.parentNode,
                 labelTimestamp = labelImageEl.dataset.labelTimestamp
@@ -158,7 +158,7 @@ const eventHandler = {
 
             controller.uploadData()
 
-            return 'stop'
+            return "stop"
           },
         }
 
@@ -166,7 +166,7 @@ const eventHandler = {
       if(!target) return
       var feat = target.dataset.feat
       var go = feat && feats.hasOwnProperty(feat) && feats[feat](e, target)
-      if(go === 'stop') return
+      if(go === "stop") return
 
       target = target.parentNode
     }

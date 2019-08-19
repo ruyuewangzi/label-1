@@ -1,21 +1,21 @@
-@import "../base";
-
-* {box-sizing: border-box;}
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
 
 html, body {
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
-	margin: 0;
-	background-color: #313f46;
+  background-color: #333;
 }
 
 #sourceImg {
-	width: 0;
-	height: 0;
+  width: 0;
+  height: 0;
 }
 
 main {
@@ -27,12 +27,10 @@ main {
   overflow: auto;
 }
 
-
 #maskImg {
   margin: 0 auto;
   display: block;
 }
-
 
 #cacheCanvas {
   position: absolute;
@@ -40,27 +38,28 @@ main {
   right: 0;
 }
 
-
 #canvasWrap {
-	position: relative;
-	background-color: #fff;
-	margin: 0 auto;
-	opacity: 0;
-	transition: opacity 270ms;
+  position: relative;
+  background-color: #fff;
+  margin: 0 auto;
+  opacity: 0;
+  transition: opacity 270ms;
+
   &.show {
     opacity: 1;
   }
-  [data-cursor="default"]{
+
+  [data-cursor="default"] {
     cursor: default;
   }
+
 }
 
 #imgCanvas, #magnifierCanvas, #labelCanvas {
-	position: absolute;
-	top: 0;
-	left: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
-
 
 #fileWrap {
   position: fixed;
@@ -71,6 +70,7 @@ main {
   overflow: auto;
   padding: 5px 10px 5px 5px;
   width: 220px;
+
   .file-name {
     position: relative;
     stroke: #FFEB3B;
@@ -90,13 +90,17 @@ main {
       background-color: hsla(173, 100%, 32%, 1);
       border-radius: 30px;
     }
+
     &:hover {
       background-color: hsla(173, 100%, 32%, .6);
     }
+
     &.active {
       background-color: hsla(173, 100%, 32%, 1);
     }
+
   }
+
 }
 
 #labelPanel {
@@ -107,9 +111,10 @@ main {
   width: 240px;
   left: auto;
 }
+
 #labelImagesWrap {
-	overflow: auto;
-	height: 100%;
+  overflow: auto;
+  height: 100%;
   user-select: none;
 
   .labelImage {
@@ -129,16 +134,19 @@ main {
       &:hover {
         background-color: hsla(173, 100%, 32%, 1);
       }
+
     }
+
     &:hover {
       cursor: default;
       background-color: hsla(173, 100%, 32%, .3);
       color: #fff;
       stroke: #fff;
     }
-  }
-}
 
+  }
+
+}
 
 .labelImage {
   .label-img-wrap {
@@ -150,11 +158,13 @@ main {
     justify-content: center;
     margin-right: 5px;
 
-    img{
+    img {
       max-width: 100%;
       max-height: 100%;
     }
+
   }
+
   .label-name {
     font-size: 12px;
     flex: 1 1 auto;
@@ -167,10 +177,13 @@ main {
     &:hover {
       cursor: text;
     }
+
   }
+
   .delete-label {
     padding: 0 5px;
     display: flex;
     align-items: center;
   }
+
 }

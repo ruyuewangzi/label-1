@@ -1,15 +1,15 @@
-import utils from '../utils'
+import * as utils from "../utils";
 
-import view from './view'
-import model from './model'
+import view from "./view"
+import model from "./model"
 
 const controller = {
   unSeelctLabel: function(){
     model.activeShape = null
-    var activeLabelImageEl = view.labelImagesWrapEl.querySelector('.labelImage.active')
+    var activeLabelImageEl = view.labelImagesWrapEl.querySelector(".labelImage.active")
 
     if(activeLabelImageEl){
-      activeLabelImageEl.classList.remove('active')
+      activeLabelImageEl.classList.remove("active")
     }
   },
   getSourceImg: function(cb){
@@ -93,7 +93,7 @@ const controller = {
         height = canvas.height = model.labelInfo.imageHeight
 
     ctx.save()
-    ctx.fillStyle = 'rgb(0, 0, 0)'
+    ctx.fillStyle = "rgb(0, 0, 0)"
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.fillRect(0, 0, width, height)
     for(var i=0; i<shapes.length; i++){
@@ -104,10 +104,10 @@ const controller = {
 
       if(hexLength <= 6){
         var diff = 6 - hexLength,
-            diffStr = '#'
+            diffStr = "#"
 
         for(var h=0; h<diff; h++){
-          diffStr += '0'
+          diffStr += "0"
         }
         hex = diffStr + hex
       }
@@ -163,7 +163,7 @@ const controller = {
     var shapes = model.labelInfo.shapes
     for(var i=0; i<shapes.length; i++){
       var shape = shapes[i]
-      shape.label = i+''
+      shape.label = i+""
     }
 
     console.log(shapes)
@@ -171,11 +171,11 @@ const controller = {
     let str = JSON.stringify(model.labelInfo)
 
     let fd = new FormData()
-    fd.append('data', str)
-    fd.append('imagePath', model.labelInfo.imagePath)
+    fd.append("data", str)
+    fd.append("imagePath", model.labelInfo.imagePath)
 
 
-    utils.ajax('/api/writefile/label', fd, function(client){
+    utils.ajax("/api/writefile/label", fd, function(client){
       var res = client.response,
           filename = res.filename
     })
@@ -190,7 +190,7 @@ const controller = {
 
     if(currentLabelPoints.length <= 3){
       model.labelInfo.shapes.splice(model.labelInfo.shapes.indexOf(currentLabel), 1)
-      var labelImageEl = view.labelImagesWrapEl.querySelector('#label_' + currentLabel.timestamp)
+      var labelImageEl = view.labelImagesWrapEl.querySelector("#label_" + currentLabel.timestamp)
       if(labelImageEl){
         labelImageEl.parentNode.removeChild(labelImageEl)
       }
@@ -225,7 +225,7 @@ const controller = {
     ctx.restore()
   },
   renderAllLabelExplore: function(){
-    var html = ''
+    var html = ""
     model.labelInfo.shapes.forEach(function(label, index){
       html += '<div data-feat="selectLabel" data-label-timestamp="'+label.timestamp+'" class="labelImage" id="label_'+label.timestamp+'"><div class="label-img-wrap"><img src="'+label.imageData+'"/></div><div class="label-name" data-feat="showInput"><span>'+(label.name || '未命名')+'</span></div><div data-feat="deleteLabel" class="delete-label"><svg width="14" height="14" viewBox="0 0 20 20"><path fill="#000000" d="M15.5 2h-3.5v-0.5c0-0.827-0.673-1.5-1.5-1.5h-2c-0.827 0-1.5 0.673-1.5 1.5v0.5h-3.5c-0.827 0-1.5 0.673-1.5 1.5v1c0 0.652 0.418 1.208 1 1.414v12.586c0 0.827 0.673 1.5 1.5 1.5h10c0.827 0 1.5-0.673 1.5-1.5v-12.586c0.582-0.206 1-0.762 1-1.414v-1c0-0.827-0.673-1.5-1.5-1.5zM8 1.5c0-0.276 0.224-0.5 0.5-0.5h2c0.276 0 0.5 0.224 0.5 0.5v0.5h-3v-0.5zM14.5 19h-10c-0.276 0-0.5-0.224-0.5-0.5v-12.5h11v12.5c0 0.276-0.224 0.5-0.5 0.5zM16 4.5c0 0.276-0.224 0.5-0.5 0.5h-12c-0.276 0-0.5-0.224-0.5-0.5v-1c0-0.276 0.224-0.5 0.5-0.5h12c0.276 0 0.5 0.224 0.5 0.5v1z"></path><path fill="#000000" d="M12.5 7c-0.276 0-0.5 0.224-0.5 0.5v10c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-10c0-0.276-0.224-0.5-0.5-0.5z"></path><path fill="#000000" d="M9.5 7c-0.276 0-0.5 0.224-0.5 0.5v10c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-10c0-0.276-0.224-0.5-0.5-0.5z"></path><path fill="#000000" d="M6.5 7c-0.276 0-0.5 0.224-0.5 0.5v10c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-10c0-0.276-0.224-0.5-0.5-0.5z"></path></svg></div></div>'
     })
@@ -234,13 +234,13 @@ const controller = {
   renderCurrentLabelExplore: function(label){
     if(!label) return
 
-    var targetImgWrapEl = view.labelImagesWrapEl.querySelector('#label_'+label.timestamp)
+    var targetImgWrapEl = view.labelImagesWrapEl.querySelector("#label_"+label.timestamp)
     if(!targetImgWrapEl){
-      targetImgWrapEl = document.createElement('div')
-      targetImgWrapEl.setAttribute('data-feat','selectLabel')
-      targetImgWrapEl.setAttribute('data-label-timestamp',label.timestamp)
-      targetImgWrapEl.classList.add('labelImage')
-      targetImgWrapEl.setAttribute('id', 'label_' + label.timestamp)
+      targetImgWrapEl = document.createElement("div")
+      targetImgWrapEl.setAttribute("data-feat","selectLabel")
+      targetImgWrapEl.setAttribute("data-label-timestamp",label.timestamp)
+      targetImgWrapEl.classList.add("labelImage")
+      targetImgWrapEl.setAttribute("id", "label_" + label.timestamp)
       targetImgWrapEl.innerHTML = '<div class="label-img-wrap"></div><div data-feat="showInput" class="label-name"><span>'+(label.name || '未命名')+'</span></div><div data-feat="deleteLabel" class="delete-label"><svg width="14" height="14" viewBox="0 0 20 20"><path fill="#000000" d="M15.5 2h-3.5v-0.5c0-0.827-0.673-1.5-1.5-1.5h-2c-0.827 0-1.5 0.673-1.5 1.5v0.5h-3.5c-0.827 0-1.5 0.673-1.5 1.5v1c0 0.652 0.418 1.208 1 1.414v12.586c0 0.827 0.673 1.5 1.5 1.5h10c0.827 0 1.5-0.673 1.5-1.5v-12.586c0.582-0.206 1-0.762 1-1.414v-1c0-0.827-0.673-1.5-1.5-1.5zM8 1.5c0-0.276 0.224-0.5 0.5-0.5h2c0.276 0 0.5 0.224 0.5 0.5v0.5h-3v-0.5zM14.5 19h-10c-0.276 0-0.5-0.224-0.5-0.5v-12.5h11v12.5c0 0.276-0.224 0.5-0.5 0.5zM16 4.5c0 0.276-0.224 0.5-0.5 0.5h-12c-0.276 0-0.5-0.224-0.5-0.5v-1c0-0.276 0.224-0.5 0.5-0.5h12c0.276 0 0.5 0.224 0.5 0.5v1z"></path><path fill="#000000" d="M12.5 7c-0.276 0-0.5 0.224-0.5 0.5v10c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-10c0-0.276-0.224-0.5-0.5-0.5z"></path><path fill="#000000" d="M9.5 7c-0.276 0-0.5 0.224-0.5 0.5v10c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-10c0-0.276-0.224-0.5-0.5-0.5z"></path><path fill="#000000" d="M6.5 7c-0.276 0-0.5 0.224-0.5 0.5v10c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-10c0-0.276-0.224-0.5-0.5-0.5z"></path></svg></div>'
       view.labelImagesWrapEl.appendChild(targetImgWrapEl)
     }
@@ -275,12 +275,12 @@ const controller = {
       ctx.restore()
 
       var dataURL = canvas.toDataURL(),
-          imageEl = targetImgWrapEl.querySelector('.label-img-wrap').querySelector('img')
+          imageEl = targetImgWrapEl.querySelector(".label-img-wrap").querySelector("img")
 
       if(!imageEl){
-        imageEl = targetImgWrapEl.querySelector('.label-img-wrap').innerHTML = '<img src="'+ dataURL +'"/>'
+        imageEl = targetImgWrapEl.querySelector(".label-img-wrap").innerHTML = '<img src="'+ dataURL +'"/>'
       }else{
-        targetImgWrapEl.querySelector('img').src = dataURL
+        targetImgWrapEl.querySelector("img").src = dataURL
       }
 
       label.imageData = dataURL
@@ -293,9 +293,9 @@ const controller = {
 
     ctx.save()
     ctx.lineWidth = 1
-    ctx.lineJoin = 'round'
-    ctx.fillStyle = 'hsla(60, 100%, 50%, .1)'
-    ctx.strokeStyle = 'hsla(60, 100%, 50%, 1)'
+    ctx.lineJoin = "round"
+    ctx.fillStyle = "hsla(60, 100%, 50%, .1)"
+    ctx.strokeStyle = "hsla(60, 100%, 50%, 1)"
 
     var shapes = model.labelInfo.shapes
     for(var i=0; i<shapes.length; i++){
@@ -305,8 +305,8 @@ const controller = {
 
       if(model.activeShape && model.activeShape === label){
         ctx.lineWidth = 2
-        ctx.strokeStyle = 'hsla(0, 100%, 60%, 1)'
-        ctx.fillStyle = 'hsla(0, 100%, 50%, .2)'
+        ctx.strokeStyle = "hsla(0, 100%, 60%, 1)"
+        ctx.fillStyle = "hsla(0, 100%, 50%, .2)"
       }
 
       var points = label.points
@@ -340,28 +340,28 @@ const controller = {
     imgCanvasEl.width = magnifierCanvasEl.width = labelCanvasEl.width = width
     imgCanvasEl.height = magnifierCanvasEl.height = labelCanvasEl.height = height
 
-    imgCanvasEl.style.width = magnifierCanvasEl.style.width = canvasWrapEl.style.width = labelCanvasEl.style.width = width + 'px'
-    imgCanvasEl.style.height = magnifierCanvasEl.style.height = canvasWrapEl.style.height = labelCanvasEl.style.height = height + 'px'
+    imgCanvasEl.style.width = magnifierCanvasEl.style.width = canvasWrapEl.style.width = labelCanvasEl.style.width = width + "px"
+    imgCanvasEl.style.height = magnifierCanvasEl.style.height = canvasWrapEl.style.height = labelCanvasEl.style.height = height + "px"
   },
   clearAllCanvas: function(){
     model.imgCtx.clearRect(0, 0, view.imgCanvasEl.width, view.imgCanvasEl.height)
     model.labelCtx.clearRect(0, 0, view.labelCanvasEl.height, view.labelCanvasEl.height)
   },
   initData: function(cb){
-    view.labelImagesWrapEl.innerHTML = ''
+    view.labelImagesWrapEl.innerHTML = ""
 
-    utils.readLabelFile(model.labelInfo.baseName+'.json', function(res){
+    utils.readLabelFile(model.labelInfo.baseName+".json", function(res){
       if(res.data){
         model.labelInfo = JSON.parse(res.data)
-        model.labelInfo.baseName = res.filename.split('.')[0]
+        model.labelInfo.baseName = res.filename.split(".")[0]
         controller.getSourceImg(function(sourceImg){
           cb && cb(sourceImg)
         })
       }else{
-        utils.readSourceFile(model.labelInfo.baseName+'.jpg', function(res){
+        utils.readSourceFile(model.labelInfo.baseName+".jpg", function(res){
           if(!res.data) return
 
-          model.labelInfo.imageData = 'data:image/jpeg;base64,'+res.data
+          model.labelInfo.imageData = "data:image/jpeg;base64,"+res.data
           controller.getSourceImg(function(sourceImg){
             model.labelInfo.shapes = []
             cb && cb(sourceImg)
@@ -382,7 +382,7 @@ const controller = {
 
       controller.getMaskImageData()
 
-      view.canvasWrapEl.classList.add('show')
+      view.canvasWrapEl.classList.add("show")
     })
   }
 }
