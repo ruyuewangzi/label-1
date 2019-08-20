@@ -4,9 +4,10 @@ import model from "./model";
 import * as utils from "../utils";
 import * as eventHandler from "./eventhandler";
 
-let label = (appEl, lifeCycle) => {
+let label = (appEl, hooks) => {
   view.insertEls(appEl);
-  eventHandler.registEventHandler();
+  eventHandler.registEventHandler(hooks || {});
+  return Object.assign({}, utils);
 };
 
 export { label };

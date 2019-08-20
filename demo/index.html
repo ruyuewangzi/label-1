@@ -19,8 +19,10 @@
     <div id="app"></div>
     <script src="sample.js"></script>
     <script>
-      goma.label(document.querySelector("#app"), {
-
+      let labelView = goma.label(document.querySelector("#app"), {
+        getLabel: (label) => {
+          console.log(label)
+        }
       });
     </script>
   </body>

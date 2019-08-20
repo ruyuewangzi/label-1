@@ -216,22 +216,6 @@ export let addPoint = point => {
   }
 };
 
-export let uploadData = () => {
-  let shapes = model.labelInfo.shapes;
-  for(let i=0; i<shapes.length; i++){
-    let shape = shapes[i];
-    shape.label = i + "";
-  }
-  let str = JSON.stringify(model.labelInfo);
-  let fd = new FormData();
-  fd.append("data", str);
-  fd.append("imagePath", model.labelInfo.imagePath);
-  utils.ajax("/api/writefile/label", fd, function(client){
-    let res = client.response;
-    let filename = res.filename;
-  });
-};
-
 export let stopDraw = () => {
   if(!model.isDrawing) return;
   let currentLabel = model.currentLabel;

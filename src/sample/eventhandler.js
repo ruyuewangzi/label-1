@@ -1,7 +1,11 @@
 import model from "./model";
 import * as view from "./view";
 
-export let registEventHandler = () => {
+let hooks = {};
+
+export let registEventHandler = (handler) => {
+  hooks = handler;
+
   view.els.appEl.addEventListener("dragover", appEl_onDragOver);
   view.els.appEl.addEventListener("dragleave", appEl_onDragLeave);
   view.els.appEl.addEventListener("drop", appEl_onDrop);
@@ -10,8 +14,27 @@ export let registEventHandler = () => {
   view.els.canvasWrapEl.addEventListener("mouseup", canvasWrapEl__onMouseUp);
   view.els.canvasWrapEl.addEventListener("contextmenu", canvasWrapEl__onContextMenu);
   view.els.labelImagesWrapEl.addEventListener("click", labelImagesWrapEl__onClick);
+  view.els.statusEl.addEventListener("click", statusEl__onClick);
   window.addEventListener("keydown", window__onKeyDown);
 };
+
+let statusEl__onClick = function(e){
+  let target = e.target;
+  while(this != target){
+    let feat = target.dataset && target.dataset.feat
+    if(feat){
+      switch(feat){
+        case "getLabel":
+          if(typeof hooks.getLabel === "function"){
+            hooks.getLabel(model.activeShape);
+          }
+        default:
+        break;
+      }
+    }
+    target = target.parentNode;
+  }
+}
 
 let appEl_onDrop = e => {
   e.preventDefault();
@@ -82,9 +105,10 @@ let labelImagesWrapEl__onClick = e => {
           model.labelInfo.shapes.splice(index, 1);
           labelImageEl.parentNode.removeChild(labelImageEl);
           view.renderLabelCanvas();
-          view.uploadData();
         }
       })
+      view.els.statusEl.innerText = "";
+      return "stop";
     },
     selectLabel: function(e, target){
       view.unSeelctLabel();
@@ -97,7 +121,7 @@ let labelImagesWrapEl__onClick = e => {
         }
       })
       let active = model.activeShape
-      view.els.statusEl.innerHTML = `<span>[${active.name||"未命名标记"}]  宽=${active.width}像素  高=${active.height}像素  距左=${active.left}像素  距顶=${active.top}像素  </span><a href="${active.imageData}" class="download" download="${active.name||"未命名标记"}.png">下载图片</a>`;
+      view.els.statusEl.innerHTML = `<span>[${active.name||"未命名标记"}]  宽=${active.width}像素  高=${active.height}像素  距左=${active.left}像素  距顶=${active.top}像素  </span><a href="${active.imageData}" class="download" download="${active.name||"未命名标记"}.png">下载图片</a> <a data-feat="getLabel" href="javascript:;">获取标注数据</a>`;
     },
     showInput: function(e, target){
       view.els.statusEl.innerText = "";
