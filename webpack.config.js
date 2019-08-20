@@ -5,10 +5,9 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 module.exports = {
   entry: {
     'sample': './src/sample/index.js',
-    'check': './src/check/index.js',
   },
   output: {
-    path: path.join(__dirname, '../goma-label-server/public/'),
+    path: path.join(__dirname, 'demo'),
     library: 'goma',
     libraryTarget: 'umd',
     filename: '[name].js'

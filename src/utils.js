@@ -7,11 +7,3 @@ export let ajax = (url, data, cb) => {
   data ? client.open("POST", url, true) : client.open("GET", url, true);
   client.send(data);
 };
-
-export let getImageBySrc = (src, cb) => {
-  let img = new Image();
-  img.src = src;
-  img.onload = () => {
-    cb && cb(img);
-  }
-};
