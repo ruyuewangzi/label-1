@@ -1,5 +1,4 @@
 import model from "./model";
-import * as utils from "../utils";
 import eventHandler from "./eventhandler";
 
 let loadImg = (src, cb) => {
