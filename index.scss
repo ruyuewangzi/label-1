@@ -1,163 +1,223 @@
-.GOMA_LABEL {
-  $statusHeight: 30px;
-  $asideWidth: 270px;
-
-  font-size: 14px;
-  background-color: #222;
-
-  #status {
-    position: fixed;
-    left: 0;
-    width: 100%;
-    top: 0;
-    height: $statusHeight;
-    color: #fff;
-    line-height: $statusHeight;
-    padding: 0 10px;
-    font-size: 12px;
-    white-space: pre;
-    background-image: linear-gradient(0deg, #222, #555);
-
-    a {
-      background-color: #fff;
-      border-radius: 4px;
-      color: #222;
-      text-decoration: none;
-      margin-left: 10px;
-      padding: 1px 4px;
-      line-height: 1;
-    }
-  }
-
-  #sourceImg {
-    width: 0;
-    height: 0;
-  }
-
-  #canvasMain {
-    position: fixed;
-    top: $statusHeight;
-    right: $asideWidth;
-    left: 0;
-    bottom: 0;
-    overflow: auto;
-  }
-
-  #labelPanel {
-    position: fixed;
-    right: 0;
-    top: $statusHeight;
-    bottom: 0;
-    width: $asideWidth;
-    left: auto;
-  }
-
-  #maskImg {
+$statusHeight: 40px;
+$asideWidth: 270px;
+.d-block {
+  display: block;
+}
+.fs-18 {
+  font-size: 1.5em;
+}
+.lh-1 {
+  line-height: 1.5;
+}
+.fs-14 {
+  font-size: 1em;
+}
+#app {
+  position: relative;
+  margin: 0 auto;
+  height: 1000px;
+  background-color: #1a3046;
+}
+#tips {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 15%;
+  color: #222;
+  .cco-popup {
+    display: none;
+    background-color: hsl(0, 0%, 100%);
+    border-radius: 10px;
+    width: 400px;
     margin: 0 auto;
-    display: block;
+    padding: 10px;
+    &[data-state="show"] {
+      display: block;
+    }
   }
-
-  #cacheCanvas {
+  .close-popup-button {
     position: absolute;
-    bottom: 0;
+    z-index: 1;
     right: 0;
-  }
-
-  #canvasWrap {
-    position: relative;
-    margin: 0 auto;
-    opacity: 0;
-    transition: opacity 270ms;
-
-    &.show {
-      opacity: 1;
-    }
-
-    [data-cursor="default"] {
-      cursor: default;
-    }
-
-  }
-
-  #imgCanvas, #magnifierCanvas, #labelCanvas {
-    position: absolute;
     top: 0;
-    left: 0;
-  }
-
-  #labelImagesWrap {
-    overflow: auto;
-    height: 100%;
-    user-select: none;
-
-    .labelImage {
-      position: relative;
-      display: flex;
-      align-items: stretch;
-      justify-content: center;
-      padding: 3px 16px 3px 3px;
-      color: #ffea00;
-      stroke: #ffea00;
-      border: 2px solid transparent;
-      border-left: none;
-      border-right: none;
-      border-top: none;
-
-      &.active {
-        color: #fff;
-        stroke: #fff;
-        background-color: rgba(243, 60, 60, 0.5);
-        border-color: #f33c3c;
-      }
-
-      &:hover {
-        cursor: default;
-        background-color: rgba(243, 60, 60, 0.6);
-        color: #fff;
-        stroke: #fff;
-      }
-
+    background-color: #fff;
+    width: 40px;
+    height: 40px;
+    margin-left: -20px;
+    margin-bottom: -50px;
+    border-radius: 100px;
+    &::before,
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      content: "";
+      width: 20px;
+      height: 2px;
+      margin-left: -10px;
+      margin-top: -1px;
+      border-radius: 10px;
+      background-color: #333;
     }
-
+    &::before {
+      transform: rotate(-45deg);
+    }
+    &::after {
+      transform: rotate(45deg);
+    }
   }
+  .cco-popup-window {
+  }
+}
+#status {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  left: 0;
+  width: 100%;
+  top: 0;
+  height: $statusHeight;
+  color: #fff;
+  line-height: $statusHeight;
+  padding: 0 10px;
+  white-space: pre;
+  background-image: linear-gradient(0deg, #125292, #2666a6);
+  box-shadow: 0 5px 5px 0px hsla(0, 0%, 0%, 0.1);
+
+  a {
+    background-color: #fff;
+    border-radius: 4px;
+    color: #222;
+    text-decoration: none;
+    margin-left: 10px;
+    padding: 1px 4px;
+    line-height: 1;
+  }
+}
+
+#sourceImg {
+  width: 0;
+  height: 0;
+}
+
+#canvasMain {
+  position: absolute;
+  top: $statusHeight;
+  right: $asideWidth;
+  left: 0;
+  bottom: 0;
+  overflow: auto;
+}
+
+#labelPanel {
+  position: absolute;
+  right: 0;
+  top: $statusHeight;
+  bottom: 0;
+  width: $asideWidth;
+  left: auto;
+}
+
+#maskImg {
+  margin: 0 auto;
+  display: block;
+}
+
+#cacheCanvas {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+#canvasWrap {
+  position: relative;
+  margin: 0 auto;
+  opacity: 0;
+  transition: opacity 270ms;
+
+  &.show {
+    opacity: 1;
+  }
+
+  [data-cursor="default"] {
+    cursor: default;
+  }
+}
+
+#imgCanvas,
+#magnifierCanvas,
+#labelCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#labelImagesWrap {
+  overflow: auto;
+  height: 100%;
+  user-select: none;
 
   .labelImage {
-    .label-img-wrap {
-      max-width: 90px;
-      min-width: 90px;
-      height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 10px;
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    padding: 3px 16px 3px 3px;
+    color: #ffea00;
+    stroke: #ffea00;
+    border: 2px solid transparent;
+    border-left: none;
+    border-right: none;
+    border-top: none;
 
-      img {
-        max-width: 100%;
-        max-height: 100%;
-      }
-
+    &.active {
+      color: #fff;
+      stroke: #fff;
+      background-color: rgba(243, 60, 60, 0.5);
+      border-color: #f33c3c;
     }
 
-    .label-name {
-      flex: 1 1 auto;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      align-items: center;
-      display: flex;
-
-      &:hover {
-        cursor: text;
-      }
-
+    &:hover {
+      cursor: default;
+      background-color: rgba(243, 60, 60, 0.6);
+      color: #fff;
+      stroke: #fff;
     }
+  }
+}
 
-    .delete-label {
-      padding: 0 5px;
-      display: flex;
-      align-items: center;
+.labelImage {
+  .label-img-wrap {
+    max-width: 90px;
+    min-width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
     }
-
   }
 
+  .label-name {
+    flex: 1 1 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+    display: flex;
+
+    &:hover {
+      cursor: text;
+    }
+  }
+
+  .delete-label {
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+  }
 }
